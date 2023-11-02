@@ -53,7 +53,7 @@ def message_handler(notification: Notification) -> None:
             conversation_id = str(uuid.uuid4().hex)[:16]
             user_conversations[sender_id] = conversation_id
             conversation = Conversation(conversation_id, sender_name)
-            conversations[sender_id] = conversation
+            conversations[conversation_id] = conversation
         else:
             conversation = conversations.get(conversation_id)
             if not conversation:
@@ -61,7 +61,7 @@ def message_handler(notification: Notification) -> None:
                 conversation_id = str(uuid.uuid4().hex)[:16]
                 user_conversations[sender_id] = conversation_id
                 conversation = Conversation(conversation_id, sender_name)
-                conversations[sender_id] = conversation
+                conversations[conversation_id] = conversation
 
         def callback(response: str):
             logger.info('AI response: ' + response)
